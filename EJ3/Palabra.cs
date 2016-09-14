@@ -6,17 +6,24 @@ using System.Threading.Tasks;
 
 namespace EJ3
 {
+    /// <summary>
+    /// Modela una palabra
+    /// </summary>
     class Palabra
     {
+       //Constante de la clase que contiene las 30 palabras.
         static String[] PALABRAS = { "castillo", "hermana", "mesa", "computadora", "television", "oraculo", "ahorcado", "pizarron","atomico","billetera",
                                       "australopitecus","cuarzo","magma","lobo","ataud","alcohol","siniestro","topo","martillo","hierro",
                                       "portero","atraco","herrero","estufa","peluqueria","maraton","hortaliza","trampa","tactica","iluminacion"};
 
 
 
-
+        //iPalabra es una palabra seleccionada de la lista. iPalabra conocida es la palabra que la fachada conoce.
         private string iPalabra, iPalabraConocida;
 
+        /// <summary>
+        /// Crea una palabra e inicializa sus atributos.
+        /// </summary>
         public Palabra()
         {
 
@@ -28,11 +35,18 @@ namespace EJ3
             iPalabraConocida = new string('_', iPalabra.Length);
         }
 
+        /// <summary>
+        /// Devuelve la palabra conocida.
+        /// </summary>
         public string PalabraConocida
         {
             get { return this.iPalabraConocida;}
         }
 
+        /// <summary>
+        /// Comprueba si la palabra esta completa.
+        /// </summary>
+        /// <returns>(true) si la palabra esta completa, (false) si la palabra no esta completa</returns>
         public bool PalabraCompleta()
         {
 
@@ -43,6 +57,11 @@ namespace EJ3
 
         }
 
+        /// <summary>
+        /// Verifica una letra en la palabra y hace que palabraconocida se revele si existe.
+        /// </summary>
+        /// <param name="pLetra">Letra que se le pasa.</param>
+        /// <returns>(true) si la letra existe en la palabra, (falso) si la letra no existe en la palabra</returns>
         public bool VerificarLetra(char pLetra)
         {
             if (iPalabra.Contains(pLetra.ToString()))
@@ -58,6 +77,10 @@ namespace EJ3
 
         }
 
+        /// <summary>
+        /// Revelea el caracter de la palabra
+        /// </summary>
+        /// <param name="pLetra">Letra que se revela</param>
         private void MostrarCaracter(char pLetra)
         {
             for (int i = 0; i < iPalabra.Length; i++)

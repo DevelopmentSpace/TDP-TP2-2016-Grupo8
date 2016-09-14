@@ -10,6 +10,7 @@ namespace EJ3
         static void Main(string[] args)
         {
             char opc;
+            //Menu principal del programa
             do
             {
                 Console.Clear();
@@ -56,7 +57,7 @@ namespace EJ3
 
 
 
-
+        //Menu configuracion de fallos.
         static private void CambiarMaxFallos()
         {
             Console.Clear();
@@ -67,7 +68,7 @@ namespace EJ3
             ahorcado.CantidadMaximaFallos = fallos;
         }
 
-
+        //Interfaz para jugar partida.
         static private void JugarPartida()
         {
             Console.Clear();
@@ -91,6 +92,7 @@ namespace EJ3
             Console.ReadLine();
         }
 
+        //Interfaz que muestra las 5 mejores partidas
         static private void MostrarCinco()
         {
             Console.Clear();

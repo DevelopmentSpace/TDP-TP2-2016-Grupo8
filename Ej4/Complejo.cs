@@ -6,13 +6,15 @@ using System.Threading.Tasks;
 
 namespace EJ4
 {
+    /// <summary>
+    /// Representa un numero complejo
+    /// </summary>
     public class Complejo
     {
 
         /// <summary>
         /// Variables para guardar la parte real y la parte imaginaria;
         /// </summary>
-
         readonly private double iReal, iImaginario;
 
         /// <summary>
