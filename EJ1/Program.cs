@@ -15,10 +15,10 @@ namespace EJ1
         {
             char opc;
 
-
+            //Menu principal del programa
             do
             {
-                Console.WriteLine("Ingrese una opcion:" );
+                Console.WriteLine("Ingrese una opcion:");
                 Console.WriteLine("1 - Circulo.");
                 Console.WriteLine("2 - Triangulo:");
                 Console.WriteLine("0 - Salir");
@@ -26,7 +26,7 @@ namespace EJ1
                 opc = Console.ReadKey().KeyChar;
 
                 switch (opc)
-                    {case '1':
+                { case '1':
                         {
                             MenuCirculo();
                             break;
@@ -44,7 +44,7 @@ namespace EJ1
             while (opc != '0');
 
         }
-
+        //Menu que se encarga de los circulos
         private static void MenuCirculo()
         {
             double pX, pY, radio;
@@ -61,13 +61,14 @@ namespace EJ1
             Console.Write(" - Radio: ");
             Double.TryParse(Console.ReadLine(), out radio);
 
-            Console.WriteLine("Perimetro: " + fachada.PerimetroCirculo(pX,pY,radio));
+            Console.WriteLine("Perimetro: " + fachada.PerimetroCirculo(pX, pY, radio));
             Console.WriteLine("Area: " + fachada.AreaCirculo(pX, pY, radio));
 
             Console.ReadKey();
 
         }
 
+        //Menu que se encarga de los triangulos
         private static void MenuTriangulo()
         {
 
