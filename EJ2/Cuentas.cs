@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace EJ2
 {
+    /// <summary>
+    /// Contiene las cuentas de un cliente
+    /// </summary>
     class Cuentas
     {
 
@@ -22,11 +25,17 @@ namespace EJ2
 
         }
 
+        /// <summary>
+        /// Obtiene la cuenta corriente de un cliente.
+        /// </summary>
         public Cuenta CuentaCorriente
         {
             get { return this.iCuentaCorriente; }
         }
 
+        /// <summary>
+        /// Obtiene la caja de ahorro de un cliente.
+        /// </summary>
         public Cuenta CajaAhorro
         {
             get { return this.iCajaAhorro; }

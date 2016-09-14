@@ -8,36 +8,60 @@ namespace EJ2
 {
     class Cuenta
     {
+        //iSaldo, es el saldo que hay en la cuenta. iAcuerdo es el acuerdo que hay en la cuenta.
         private double iSaldo, iAcuerdo;
 
-
+        /// <summary>
+        /// Crea una cuenta con el acuerdo especificado.
+        /// </summary>
+        /// <param name="pAcuerdo">Acuerdo</param>
         public Cuenta(double pAcuerdo)
         {
             iAcuerdo = pAcuerdo;
             iSaldo = 0;
         }
 
+        /// <summary>
+        /// Crea una cuenta con el acuerdo y el saldo inicial especificado.
+        /// </summary>
+        /// <param name="pSaldoInicial">Saldo inicial</param>
+        /// <param name="pAcuerdo">Acuerdo</param>
         public Cuenta(double pSaldoInicial, double pAcuerdo)
         {
             iAcuerdo = pAcuerdo;
             iSaldo = pSaldoInicial;
         }
 
+        /// <summary>
+        /// Devuelve el saldo de la cuenta.
+        /// </summary>
         public double Saldo
         {
             get { return this.iSaldo; }
         }
 
+        /// <summary>
+        /// Devuelve el acuerdo de la cuenta.
+        /// </summary>
         public double Acuerdo
         {
             get { return this.iAcuerdo; }
         }
 
+        /// <summary>
+        /// Acredita saldo en una cuenta.
+        /// </summary>
+        /// <param name="pSaldo">Saldo a acreditar</param>
         public void AcreditarSaldo(double pSaldo)
         {
             this.iSaldo += pSaldo;
         }
 
+        /// <summary>
+        /// Debita saldo en una cuenta
+        /// </summary>
+        /// <param name="pSaldo">Saldo a debitar</param>
+        /// <returns>(true) si se puede debitar dicho saldo, (false) si no se puede debitar el saldo</returns>
         public bool DebitarSaldo(double pSaldo)
         {
             if (iSaldo + iAcuerdo >= pSaldo)

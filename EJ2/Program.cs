@@ -17,8 +17,6 @@ namespace EJ2
             {
                 char opc;
 
-                //MenuCliente();
-
                 do
                 {
                     Console.WriteLine("Ingrese una opcion:");
