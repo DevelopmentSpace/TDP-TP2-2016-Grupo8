@@ -7,19 +7,14 @@ using System.Threading.Tasks;
 namespace EJ2
 {
     /// <summary>
-    /// Encargado de gestionar los clientes
+    /// Encargado de gestionar los clientes y sus cuentas
     /// </summary>
     class AdmCuentas
     {
-        //Constantes de las cuentas
-        const double ACUERDO_CUENTA_CORRIENTE = 1000;
-        const double ACUERDO_CAJA_AHORRO = 500;
-        const double SALDO_INICIAL_CUENTA_CORRIENTE = 1460;
-        const double SALDO_INICIAL_CAJA_AHORRO = 4589;
-
-        //Variables. iCuentaCorriente contiene la cuenta corriente inicializada con las constantes. iCajaAhorro contiene la caja ahorro de la cuenta inicializada con las constantes.
-        private Cuenta iCuentaCorriente = new Cuenta(SALDO_INICIAL_CUENTA_CORRIENTE, ACUERDO_CUENTA_CORRIENTE);
-        private Cuenta iCajaAhorro = new Cuenta(SALDO_INICIAL_CAJA_AHORRO, ACUERDO_CAJA_AHORRO);
+   
+        //Variables. iCuentas contiene las cuentas de un cliente, iCliente contiene el cliente. iCliente seria tipo una sesion o algo asi se me ocurre.
+        private Cuentas iCuentas = null;
+        private Cliente iCliente;
 
         /// <summary>
         /// Transfiere desde la cuenta corriente a una caja ahorro el saldo especificado.
@@ -28,13 +23,14 @@ namespace EJ2
         /// <returns>(True) Si se  hizo la transferencia, (false) si no se pudo concretar la transferencia</returns>
         public bool TransferirACajaAhorro(double pSaldo)
         {
-
-                if(iCuentaCorriente.DebitarSaldo(pSaldo))
+            if (ExisteCajaAhorro() && ExisteCuentaCorriente())
+            { 
+                if(iCuentas.CuentaCorriente.DebitarSaldo(pSaldo))
                 {
-                    iCajaAhorro.AcreditarSaldo(pSaldo);
+                    iCuentas.CajaAhorro.AcreditarSaldo(pSaldo);
                     return true;
                 }
-
+            }
             return false;
 
         }
@@ -46,9 +42,10 @@ namespace EJ2
         /// <returns>(True) Si se  hizo la transferencia, (false) si no se pudo concretar la transferencia</returns>
         public bool TransferirACuentaCorriente(double pSaldo)
         {
-                if (iCajaAhorro.DebitarSaldo(pSaldo))
+            if (ExisteCajaAhorro() && ExisteCuentaCorriente())
+                if (iCuentas.CajaAhorro.DebitarSaldo(pSaldo))
                 {
-                    iCuentaCorriente.AcreditarSaldo(pSaldo);
+                    iCuentas.CuentaCorriente.AcreditarSaldo(pSaldo);
                     return true;
                 }
 
@@ -62,7 +59,7 @@ namespace EJ2
         /// <returns>Saldo de la cuenta corriente</returns>
         public double SaldoCuentaCorriente()
         {
-            return iCuentaCorriente.Saldo;
+            return iCuentas.CuentaCorriente.Saldo;
         }
 
         /// <summary>
@@ -71,22 +68,102 @@ namespace EJ2
         /// <returns>Saldo de la caja de ahorro</returns>
         public double SaldoCajaAhorro()
         {
-            return iCajaAhorro.Saldo;
+            return iCuentas.CajaAhorro.Saldo;
         }
 
-
-        /*
+        /// <summary>
+        /// Crea un cliente
+        /// </summary>
+        /// <param name="pTipoDocumento">Tipo de documento</param>
+        /// <param name="pNumeroDocumento">Numero de documento</param>
+        /// <param name="pNombre">Nombre del cliente</param>
         public void CrearCliente(TipoDocumento pTipoDocumento,string pNumeroDocumento, string pNombre)
         {
             iCliente = new Cliente(pTipoDocumento, pNumeroDocumento, pNombre);
         }
 
-        public void CrearCuentas()
+        /// <summary>
+        /// Devuelve el cliente.
+        /// </summary>
+        public Cliente Cliente
         {
+            get { return iCliente; }
 
-            Cuentas iCuentas = new Cuentas();
+         }
+
+        /// <summary>
+        /// Devuelve la caja de ahorro.
+        /// </summary>
+        public Cuenta CajaDeAhorro
+        {
+            get { return iCuentas.CajaAhorro; }
+
         }
-        */
+
+        /// <summary>
+        /// Devuelve la cuenta corriente.
+        /// </summary>
+        public Cuenta CuentaCorriente
+        {
+            get { return iCuentas.CuentaCorriente; }
+
+        }
+
+        /// <summary>
+        /// Crea las cuentas de un cliente determinado
+        /// </summary>
+        /// <param name="pCliente">Cliente al que se le asigna la cuenta</param>
+        /// <param name="pCuentaCorriente">Una cuenta que sera la cuenta corriente</param>
+        /// <param name="pCajaAhorro">Una cuenta que sera la caja de ahorro</param>
+        public void CrearCuentas(Cliente pCliente,Cuenta pCuentaCorriente, Cuenta pCajaAhorro)
+        {
+            iCuentas = new Cuentas(pCliente,pCuentaCorriente,pCajaAhorro);
+        }
+
+        /// <summary>
+        /// Crea una cuenta
+        /// </summary>
+        /// <param name="pAcuerdo">Acuerdo de dicha cuenta</param>
+        /// <returns></returns>
+        public Cuenta CrearCuenta(double pAcuerdo)
+        {
+            Cuenta cuenta;
+            return cuenta = new Cuenta(pAcuerdo);
+        }
+
+        /// <summary>
+        /// Crea una cuenta
+        /// </summary>
+        /// <param name="pSaldoInicial">Saldo inicial</param>
+        /// <param name="pAcuerdo">Acuerdo de dicha cuenta</param>
+        /// <returns></returns>
+        public Cuenta CrearCuenta(double pSaldoInicial,double pAcuerdo)
+        {
+            Cuenta cuenta;
+            return cuenta = new Cuenta(pSaldoInicial, pAcuerdo);
+        }
+
+        /// <summary>
+        /// Responde la existencia de una caja de ahorro
+        /// </summary>
+        /// <returns>(true) existe una caja de ahorro, (false) no existe una caja de ahorro</returns>
+        public bool ExisteCajaAhorro()
+        {
+            if (iCuentas.CajaAhorro != null)
+                return true;
+            return false;
+        }
+
+        /// <summary>
+        /// Responde la existencia de una cuenta corriente
+        /// </summary>
+        /// <returns>(true) existe una cuenta corriente, (false) no existe una cuenta corriente</returns>
+        public bool ExisteCuentaCorriente()
+        {
+            if (iCuentas.CuentaCorriente != null)
+                return true;
+            return false;
+        }
 
     }
 }
