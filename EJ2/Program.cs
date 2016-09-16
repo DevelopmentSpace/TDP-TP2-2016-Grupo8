@@ -12,7 +12,7 @@ namespace EJ2
 
             {
                 MenuCliente();
-                Inicializar();
+                iAdmCuentas.CrearCuentas();
 
 
                 char opc;
@@ -24,7 +24,6 @@ namespace EJ2
                     Console.WriteLine("Ingrese una opcion:");
                     Console.WriteLine("1 - Gestion cuentas.");
                     Console.WriteLine("2 - Datos del cliente.");
-                    Console.WriteLine("3 - Administracion.");
                     Console.WriteLine("0 - Salir.");
 
                     opc = Console.ReadKey().KeyChar;
@@ -39,11 +38,6 @@ namespace EJ2
                         case '2':
                             {
                                 DatosCliente();
-                                break;
-                            }
-                        case '3':
-                            {
-                                MenuAdministracion();
                                 break;
                             }
                     }
@@ -191,103 +185,5 @@ namespace EJ2
             Console.ReadKey();
     }
 
-        private static void MenuAdministracion()
-        {
-
-            {
-                char opc;
-
-                do
-                {
-                    Console.Clear();
-
-                    Console.WriteLine("Ingrese una opcion (para el cliente actual):");
-                    Console.WriteLine("1 - Crear caja ahorro.");
-                   Console.WriteLine("2 - Crear cuenta corriente.");
-                    //Console.WriteLine("3 - Administrar clientes.");
-                    Console.WriteLine("0 - Salir.");
-
-                    opc = Console.ReadKey().KeyChar;
-
-                    switch (opc)
-                    {
-                        case '1':
-                            {
-                                CrearCajaAhorro();
-                                break;
-                            }
-                        case '2':
-                            {
-                                CrearCuentaCorriente();
-                                break;
-                            }
-                    }
-                }
-
-                while (opc != '0');
-
-            }
-
-        }
-
-        private static void CrearCajaAhorro()
-        {
-            if (!iAdmCuentas.ExisteCajaAhorro())
-            {
-                int mSaldoInicial, mAcuerdo;
-                Cuenta mCajaAhorro = null;
-
-                Console.Clear();
-
-                    Console.WriteLine("Creacion de cuentas:");
-                    Console.WriteLine("Caja de ahorro.");
-                    Console.Write("Saldo inicial: ");
-                    int.TryParse(Console.ReadLine(), out mSaldoInicial);
-                    Console.Write("Acuerdo: ");
-                    int.TryParse(Console.ReadLine(), out mAcuerdo);
-
-                    mCajaAhorro = iAdmCuentas.CrearCuenta(mSaldoInicial, mAcuerdo);
-                    iAdmCuentas.CrearCuentas(iAdmCuentas.Cliente, iAdmCuentas.CuentaCorriente, mCajaAhorro);
-
-            }
-                        else
-                {
-                    Console.Write("Ya existe una caja de ahorro.");
-                    Console.ReadKey();
-            }
-}
-
-        private static void CrearCuentaCorriente()
-        {
-            if (!iAdmCuentas.ExisteCuentaCorriente())
-            {
-                int mSaldoInicial, mAcuerdo;
-                Cuenta mCuentaCorriente;
-
-                Console.WriteLine("Creacion de cuentas:");
-                Console.WriteLine("Caja de ahorro.");
-                Console.Write("Saldo inicial:");
-                int.TryParse(Console.ReadLine(), out mSaldoInicial);
-                Console.Write("Acuerdo:");
-                int.TryParse(Console.ReadLine(), out mAcuerdo);
-
-                mCuentaCorriente = iAdmCuentas.CrearCuenta(mSaldoInicial, mAcuerdo);
-                iAdmCuentas.CrearCuentas(iAdmCuentas.Cliente, mCuentaCorriente, iAdmCuentas.CajaDeAhorro);
-
-            }
-            else
-            {
-                Console.Write("Ya existe una cuenta corriente.");
-                Console.ReadKey();
-            }
-        }
-
-        private static void Inicializar()
-        {
-                Cuenta mCajaAhorro = null;
-                Cuenta mCuentaCorriente = null;
-
-                iAdmCuentas.CrearCuentas(iAdmCuentas.Cliente, mCuentaCorriente, mCajaAhorro);
-        }
     }
 }

@@ -11,9 +11,9 @@ namespace EJ2
     /// </summary>
     class AdmCuentas
     {
-   
-        //Variables. iCuentas contiene las cuentas de un cliente, iCliente contiene el cliente. iCliente seria tipo una sesion o algo asi se me ocurre.
-        private Cuentas iCuentas = null;
+
+        //iCuentas contiene las cuentas de un cliente, iCliente contiene el cliente. 
+        private Cuentas iCuentas;
         private Cliente iCliente;
 
         /// <summary>
@@ -112,35 +112,9 @@ namespace EJ2
         /// <summary>
         /// Crea las cuentas de un cliente determinado
         /// </summary>
-        /// <param name="pCliente">Cliente al que se le asigna la cuenta</param>
-        /// <param name="pCuentaCorriente">Una cuenta que sera la cuenta corriente</param>
-        /// <param name="pCajaAhorro">Una cuenta que sera la caja de ahorro</param>
-        public void CrearCuentas(Cliente pCliente,Cuenta pCuentaCorriente, Cuenta pCajaAhorro)
+        public void CrearCuentas()
         {
-            iCuentas = new Cuentas(pCliente,pCuentaCorriente,pCajaAhorro);
-        }
-
-        /// <summary>
-        /// Crea una cuenta
-        /// </summary>
-        /// <param name="pAcuerdo">Acuerdo de dicha cuenta</param>
-        /// <returns></returns>
-        public Cuenta CrearCuenta(double pAcuerdo)
-        {
-            Cuenta cuenta;
-            return cuenta = new Cuenta(pAcuerdo);
-        }
-
-        /// <summary>
-        /// Crea una cuenta
-        /// </summary>
-        /// <param name="pSaldoInicial">Saldo inicial</param>
-        /// <param name="pAcuerdo">Acuerdo de dicha cuenta</param>
-        /// <returns></returns>
-        public Cuenta CrearCuenta(double pSaldoInicial,double pAcuerdo)
-        {
-            Cuenta cuenta;
-            return cuenta = new Cuenta(pSaldoInicial, pAcuerdo);
+            iCuentas = new Cuentas();
         }
 
         /// <summary>
