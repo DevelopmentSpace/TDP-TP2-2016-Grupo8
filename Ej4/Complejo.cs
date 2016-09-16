@@ -182,7 +182,12 @@ namespace EJ4
         {
             //Formula division complejos: (A + Bi) / (C + Di) = ( (A*C + B*D) / (C^2 + D^2) ) + ( (B*C - A*D) / (C^2+D^2) )
 
-            return Complejo.Crear( (((this.Real * pOtroComplejo.Real) + (this.Imaginario * pOtroComplejo.Imaginario)) / ( Math.Pow(pOtroComplejo.Imaginario,2) + Math.Pow(pOtroComplejo.Real,2) ) ), (((this.Imaginario * pOtroComplejo.Real) - (this.Real * pOtroComplejo.Imaginario)) / (Math.Pow(pOtroComplejo.Imaginario, 2) + Math.Pow(pOtroComplejo.Real, 2))));
+            if (pOtroComplejo.Real == 0 && pOtroComplejo.Imaginario == 0)
+            {
+                throw new System.ArgumentException("No se puede dividir por 0.");
+            }
+            else
+                return Complejo.Crear( (((this.Real * pOtroComplejo.Real) + (this.Imaginario * pOtroComplejo.Imaginario)) / ( Math.Pow(pOtroComplejo.Imaginario,2) + Math.Pow(pOtroComplejo.Real,2) ) ), (((this.Imaginario * pOtroComplejo.Real) - (this.Real * pOtroComplejo.Imaginario)) / (Math.Pow(pOtroComplejo.Imaginario, 2) + Math.Pow(pOtroComplejo.Real, 2))));
         }
 
     }
