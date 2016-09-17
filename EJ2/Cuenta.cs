@@ -8,7 +8,7 @@ namespace EJ2
 {
     class Cuenta
     {
-        //iSaldo, es el saldo que hay en la cuenta. iAcuerdo es el acuerdo que hay en la cuenta.
+        //iSaldo, es el saldo que hay en la cuenta. iAcuerdo es el acuerdo que tiene establecido la cuenta.
         private double iSaldo, iAcuerdo;
 
         /// <summary>

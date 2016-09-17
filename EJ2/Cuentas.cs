@@ -11,17 +11,19 @@ namespace EJ2
     /// </summary>
     class Cuentas
     {
+        // iCliente representa un cliente.
+        private Cliente iCliente;
+        private Cuenta iCuentaCorriente;
+        private Cuenta iCajaAhorro;
 
-        //private Cliente iCliente;
-        private Cuenta iCuentaCorriente = null;
-        private Cuenta iCajaAhorro = null;
-
-
-        public Cuentas(/*Cliente pCliente,Cuenta pCuentaCorriente, Cuenta pCuentaAhorro*/)
+        /// <summary>
+        /// Constructor de la clase
+        /// </summary>
+        public Cuentas()
         {
-            /*iCliente = pCliente;
-            iCuentaCorriente = pCuentaCorriente;
-            iCajaAhorro = pCuentaAhorro;*/
+
+            iCuentaCorriente = new Cuenta(1000, 50);
+            iCajaAhorro = new Cuenta(500);
 
         }
 
